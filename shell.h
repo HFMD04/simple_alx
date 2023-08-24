@@ -4,12 +4,9 @@
 #include <stdio.h>
 #include <unistd.h>
 #include <stdlib.h>
+#include <sys/types.h>
 #include <string.h>
-
-void read_command(char*command, size_t size);
-void dislay_prompt(void);
-void execute_command(const char*command);
-void leo_print(const char*message);
+#include <sys/wait.h>
 
 #define MAX_CMD_LEN 100
 
