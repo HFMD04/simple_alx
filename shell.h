@@ -10,5 +10,7 @@
 
 #define MAX_CMD_LEN 100
 
+extern char **environ;
+
 #endif /* SHELL_H */
 

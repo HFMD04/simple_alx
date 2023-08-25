@@ -20,26 +20,26 @@ while (1)
 		if (feof(stdin))
 		{
 			printf("\n");
-			user_input = "";
+			free(user_input);
 			return (EXIT_SUCCESS);
 		}
 		else
 		{
 			perror("Input reading error");
-			user_input = "";
+			free(user_input);
 			return (EXIT_FAILURE);
 		}
 	}
 	user_input[strcspn(user_input, "\n")] = '\0';
 	args[0] = user_input;
 	args[1] = NULL;
-	if (execve(user_input, args, NULL) == -1)
+	if (execve(user_input, args, environ) == -1)
 	{
 		perror("Command execution error");
-		user_input = "";
+		free(user_input);
 		return (EXIT_FAILURE);
 	}
-	user_input = "";
+	free(user_input);
 }
 return (EXIT_SUCCESS);
 }
