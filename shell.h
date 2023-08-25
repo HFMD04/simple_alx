@@ -7,6 +7,7 @@
 #include <sys/types.h>
 #include <string.h>
 #include <sys/wait.h>
+#include <stdbool.h>
 
 #define MAX_CMD_LEN 100
 

@@ -55,11 +55,14 @@ void execute_command(char *command)
 int main(void)
 {
 	char *user_input;
+	bool from_pipe = false;
 
-	while (1)
+	while (1 && !from_pipe)
 	{
 		pid_t process_id;
 
+		if (isatty(STDIN_FILENO) == 0)
+			from_pipe = true;
 		user_input = read_user_input();
 		if (user_input == NULL)
 		{
