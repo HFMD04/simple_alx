@@ -10,7 +10,7 @@ char *read_user_input(void)
 	char *input = NULL;
 	size_t buffer_size = 0;
 
-	printf("#myshell$ ");
+	write(STDOUT_FILENO, "$ ", 2);
 	if (getline(&input, &buffer_size, stdin) == -1)
 	{
 		if (feof(stdin))
