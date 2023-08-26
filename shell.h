@@ -8,10 +8,11 @@
 #include <string.h>
 #include <sys/wait.h>
 #include <stdbool.h>
+#include <sys/stat.h>
 
 #define MAX_CMD_LEN 100
 
 extern char **environ;
+char **split_string(char *input, const char *delimiter, int *argc);
 
 #endif /* SHELL_H */
-

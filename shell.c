@@ -28,6 +28,7 @@ char *read_user_input(void)
 	return (input);
 }
 
+
 /**
  * execute_command - Execute a command using execve.
  *
@@ -45,6 +46,10 @@ void execute_command(char *command)
 		perror("Command execution error");
 		exit(EXIT_FAILURE);
 	}
+	/* Free the command memory before calling execve */
+	perror("Error (execve)");
+	exit(EXIT_FAILURE);
+	free(command);
 }
 
 /**
@@ -66,7 +71,6 @@ int main(void)
 		user_input = read_user_input();
 		if (user_input == NULL)
 		{
-			free(user_input);
 			return (EXIT_SUCCESS);
 		}
 
