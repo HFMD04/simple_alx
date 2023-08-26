@@ -7,20 +7,23 @@
  */
 char *read_user_input(void)
 {
+	ssize_t bytes; /*Correct variable name*/
 	char *input = NULL;
 	size_t buffer_size = 0;
 
 	write(STDOUT_FILENO, "$ ", 2);
-	if (getline(&input, &buffer_size, stdin) == -1)
+	if ((bytes = getline(&input, &buffer_size, stdin)) == -1)
 	{
 		if (feof(stdin))
 		{
 			printf("\n");
+			free(input);
 			return (NULL);
 		}
 		else
 		{
 			perror("Input reading error");
+			free(input);
 			return (NULL);
 		}
 	}
@@ -66,7 +69,7 @@ int i; /* Declare i outside of the loop */
 		free(tokens[i]);
 		free(tokens);
 		return (NULL);
-	}
+	{
 	count++;
 	token = strtok(NULL, delimiter);
 	}
@@ -91,6 +94,7 @@ void execute_command(char *command)
 	if (execve(command, args, environ) == -1)
 	{
 		perror("Command execution error");
+		free(command);
 		exit(EXIT_FAILURE);
 	}
 	/* Free the command memory before calling execve */
