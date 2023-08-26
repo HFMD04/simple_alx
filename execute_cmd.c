@@ -7,17 +7,17 @@
  */
 void execute_command(char *command)
 {
-        char *args[2];
+	char *args[2];
 
-        args[0] = command;
-        args[1] = NULL;
+	args[0] = command;
+	args[1] = NULL;
 
-        if (execve(command, args, environ) == -1)
-        {
-                perror("Command execution error");
-                free(command);
-                exit(EXIT_FAILURE);
-        }
-        /* Free the command memory before calling execve */
-        free(command);
+	if (execve(command, args, environ) == -1)
+	{
+		perror("Command execution error");
+		free(command);
+		exit(EXIT_FAILURE);
+	}
+	/* Free the command memory before calling execve */
+	free(command);
 }
